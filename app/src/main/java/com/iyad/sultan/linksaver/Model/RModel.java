@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
@@ -21,15 +22,20 @@ public class RModel {
     }
 
     //Get
-    public List<Link> getLinksByCategory(int category) {
+    public RealmResults<Link> getLinksByCategory(int category) {
 
         return realm.where(Link.class).equalTo("Category", category).findAll();
     }
 
-    public List<Link> getLinksByImportant() {
+    public RealmResults<Link> getLinksByImportant() {
 
         return realm.where(Link.class).equalTo("isImportant", true).findAll();
     }
+    public RealmResults<Link> getLinksByKey(String key) {
+
+        return realm.where(Link.class).equalTo("Title", key, Case.INSENSITIVE).findAll();
+    }
+
 
     public RealmResults<Link> getLinksAll() {
         return realm.where(Link.class).findAllSorted("date", Sort.DESCENDING);
@@ -70,22 +76,5 @@ public class RModel {
             realm.close();
     }
 
-    public void DumbData(){
-        Calendar c=Calendar.getInstance();
-        for (int x=0 ; x<10;x++){
-           final   Link l=new Link();
-            l.setDate(c.getTime());
-            l.setTitle("Title " + x);
-            l.setImportant(false);
-            l.setCategory(5);
-            l.setLink("Link " +x);
-            realm.executeTransaction(new Realm.Transaction() {
-                @Override
-                public void execute(Realm realm) {
-                    realm.insert(l);
-                }
-            });
 
-        }
-    }
 }

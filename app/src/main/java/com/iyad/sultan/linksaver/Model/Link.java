@@ -14,7 +14,7 @@ public class Link extends RealmObject {
     private int Category;
     private String link;
     private boolean isImportant;
-    private Date date;
+    private String date;
 
     public String getTitle() {
         return Title;
@@ -48,11 +48,11 @@ public class Link extends RealmObject {
         isImportant = important;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 }

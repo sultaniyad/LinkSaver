@@ -13,7 +13,9 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
+import com.iyad.sultan.linksaver.Controller.RecAdapter;
 import com.iyad.sultan.linksaver.Model.RModel;
 import com.iyad.sultan.linksaver.View.AllLinks;
 import com.iyad.sultan.linksaver.View.ImportantLinks;
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity {
        return true;
     }
 
+
+
     //ViewPager Adapter
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
@@ -123,4 +127,7 @@ public class MainActivity extends AppCompatActivity {
             Fname.add(name);
         }
     }
+
+
+
 }

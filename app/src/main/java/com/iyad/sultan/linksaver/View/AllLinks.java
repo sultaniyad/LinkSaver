@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.iyad.sultan.linksaver.Controller.RecAdapter;
 import com.iyad.sultan.linksaver.Model.Link;
@@ -22,7 +23,7 @@ import io.realm.RealmResults;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class AllLinks extends Fragment {
+public class AllLinks extends Fragment implements RecAdapter.CommunicationInterface {
 
 
     public AllLinks() {
@@ -39,13 +40,20 @@ public class AllLinks extends Fragment {
 
         ButterKnife.bind(this, v);
 
-        rec.setAdapter(new RecAdapter( new RModel().getLinksAll()));
+        rec.setAdapter(new RecAdapter( new RModel().getLinksAll(),this));
 
         LinearLayoutManager gridL =new LinearLayoutManager(getActivity());
         rec.setHasFixedSize(true);
         rec.setLayoutManager(gridL);
 
         return v;
+    }
+
+
+    //Interface implements
+    @Override
+    public void onLinkSelected(int position) {
+        Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
     }
 
 }

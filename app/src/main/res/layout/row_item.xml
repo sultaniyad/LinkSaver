@@ -6,6 +6,7 @@
     android:background="#dddddd"
     android:layout_margin="10dp"
     android:orientation="vertical">
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
@@ -70,20 +71,35 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:paddingLeft="15dp"
-            android:text="bbbbbbbb"
+            android:text="@string/open"
 
             android:paddingRight="15dp"
             android:textColor="#0a80d1"
             android:gravity="right" />
-        <TextView
-            android:id="@+id/AdreMed"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:paddingBottom="5dp"
-            android:paddingLeft="15dp"
-            android:text="textttt"
-            android:paddingRight="15dp"
-            android:gravity="right" />
+
+       <LinearLayout
+           android:layout_width="fill_parent"
+           android:layout_height="wrap_content"
+           android:gravity="start">
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingBottom="5dp"
+               android:paddingLeft="15dp"
+               app:srcCompat="@drawable/ic_delete_24px"
+               android:paddingRight="15dp"
+               />
+
+           <ImageButton
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:paddingBottom="5dp"
+               android:paddingLeft="15dp"
+               app:srcCompat="@drawable/ic_favorite_border_24px"
+               android:paddingRight="15dp"
+               />
+       </LinearLayout>
     </LinearLayout>
 </LinearLayout>
 

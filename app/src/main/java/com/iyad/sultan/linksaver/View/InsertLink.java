@@ -12,6 +12,7 @@ import com.iyad.sultan.linksaver.Model.Link;
 import com.iyad.sultan.linksaver.Model.RModel;
 import com.iyad.sultan.linksaver.R;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
 import butterknife.BindView;
@@ -19,7 +20,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class InsertLink extends AppCompatActivity {
-
+    SimpleDateFormat format1 ;
     RModel rModel ;
     Calendar c;
     @BindView(R.id.toolbar2)Toolbar toolbar;
@@ -37,6 +38,7 @@ public class InsertLink extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
+        format1 = new SimpleDateFormat("yyyy-MM-dd");
 
 
 
@@ -54,12 +56,14 @@ public class InsertLink extends AppCompatActivity {
 
     void addNeeLink(String title,String link,int category){
 
+
         Link l=new Link();
         l.setTitle(title);
         l.setLink(link);
         l.setCategory(category);
 
-        l.setDate(c.getTime());
+
+        l.setDate(format1.format(c.getTime()));
         l.setImportant(false);
        if(  rModel.insertLink(l))
         Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();

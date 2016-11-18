@@ -7,13 +7,13 @@
     <item
         android:id="@+id/action_search"
         android:title="@string/action_search"
-        android:icon="@android:drawable/alert_dark_frame"
+        android:icon="@drawable/ic_search_white_24dp"
         app:actionViewClass="android.support.v7.widget.SearchView"
         app:showAsAction="ifRoom|collapseActionView" />
     <item
         android:id="@+id/new_link"
         android:title="@string/add_new_link"
-        android:icon="@android:drawable/btn_default"
+        android:icon="@drawable/ic_add_white_24dp"
         app:showAsAction="always" />
 
 </menu>

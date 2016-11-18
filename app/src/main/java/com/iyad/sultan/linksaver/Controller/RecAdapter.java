@@ -1,5 +1,6 @@
 package com.iyad.sultan.linksaver.Controller;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,13 +22,27 @@ import io.realm.RealmResults;
 
 public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     private  RealmResults<Link> results;
-    public RecAdapter(RealmResults<Link> r){
+    CommunicationInterface mCallback;
+    //Constructor
+    public RecAdapter(RealmResults<Link> r,CommunicationInterface com){
         results = r;
+
+       try {
+           mCallback  = com;
+       }
+       catch (ClassCastException e) {
+           throw new ClassCastException(e.toString()
+                   + " must implement CommunicationInterface!!!");
+       }
     }
     public void setNewResult(RealmResults<Link> r){
         results =r;
     }
 
+    //Interface
+    public interface CommunicationInterface {
+        void onLinkSelected(int position);
+    }
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
@@ -68,6 +83,12 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             txt_title = (TextView) itemView.findViewById(R.id.txt_title);
             txt_date = (TextView) itemView.findViewById(R.id.txt_date);
 
+            txt_title.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.onLinkSelected(getAdapterPosition());
+                }
+            });
         }
     }
 

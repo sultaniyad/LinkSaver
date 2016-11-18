@@ -14,6 +14,7 @@
     <string name="select_category">Select category</string>
     <string name="link_title">Link title</string>
     <string name="enter_link">Enter link</string>
+    <string name="open">Open</string>
 
     <array name="category_array">
         <item>All</item>
