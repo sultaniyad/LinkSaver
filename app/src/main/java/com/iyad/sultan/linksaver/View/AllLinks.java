@@ -25,7 +25,9 @@ import io.realm.RealmResults;
  */
 public class AllLinks extends Fragment implements RecAdapter.CommunicationInterface {
 
-
+    private RModel rm;
+    private RealmResults<Link> results;
+    private RecAdapter adp;
     public AllLinks() {
         // Required empty public constructor
     }
@@ -39,8 +41,11 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
         View v =inflater.inflate(R.layout.fragment_all_links, container, false);
 
         ButterKnife.bind(this, v);
-
-        rec.setAdapter(new RecAdapter( new RModel().getLinksAll(),this));
+//Realm
+        rm= new RModel();
+        results = new RModel().getLinksAll();
+       adp= new RecAdapter( results,this);
+        rec.setAdapter(adp);
 
         LinearLayoutManager gridL =new LinearLayoutManager(getActivity());
         rec.setHasFixedSize(true);
@@ -50,10 +55,27 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
     }
 
 
-    //Interface implements
     @Override
-    public void onLinkSelected(int position) {
-        Toast.makeText(getActivity(), "" + position, Toast.LENGTH_SHORT).show();
+    public void onDestroy() {
+        super.onDestroy();
+        rm.removeRealm();
     }
 
+    //Interface implements
+    @Override
+    public void onImportantStatusChange(int position) {
+        Toast.makeText(getActivity(), "status" + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDeleteLinkClicked(int position) {
+        rm.deleteLink(results,position);
+        adp.notifyItemRemoved(position);
+
+    }
+
+    @Override
+    public void onOpenLinkClicked(int position) {
+        Toast.makeText(getActivity(), "open link" + position, Toast.LENGTH_SHORT).show();
+    }
 }

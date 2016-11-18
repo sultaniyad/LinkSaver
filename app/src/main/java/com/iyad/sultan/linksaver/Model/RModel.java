@@ -66,6 +66,7 @@ public class RModel {
             @Override
             public void execute(Realm realm) {
                results.get(position).deleteFromRealm();
+
             }
         });
         return true;
