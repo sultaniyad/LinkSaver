@@ -59,9 +59,9 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     @Override
     public void onBindViewHolder(myViewHolder holder, int position) {
         final Link link = results.get(position);
-        holder.txt_title.setText(link.getTitle().toString());
-        holder.txt_date.setText(link.getDate().toString());
-       // holder.img_imporant.setImageResource(R.mipmap.ic_launcher);
+        holder.txt_title.setText(link.getTitle());
+        holder.txt_date.setText(link.getDate());
+        holder.img_imporant.setImageResource(link.isImportant()?R.drawable.lightbulb_on:R.drawable.lightbulb_off);
        // holder.img_openlink.setImageResource(R.mipmap.ic_launcher);
 
     }
@@ -109,10 +109,19 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             img_imporant.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mCallback.onImportantStatusChange(getAdapterPosition());
+                    //**change first in realm then change interface
+        int position = getAdapterPosition();
+                    mCallback.onImportantStatusChange(position);
+                    Link l = results.get(position);
+                    img_imporant.setImageResource(l.isImportant()?R.drawable.lightbulb_on:R.drawable.lightbulb_off);
+                    //change in realm
+                    /*
+                    * l.set*/
                 }
             });
         }
+
+
     }
 
 

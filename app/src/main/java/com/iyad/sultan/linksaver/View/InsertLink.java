@@ -50,7 +50,6 @@ public class InsertLink extends AppCompatActivity {
     public void submit(View view) {
 
         addNeeLink(txt_title.getText().toString(),txt_link.getText().toString(),1);
-        Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
 
     }
 
@@ -68,6 +67,7 @@ public class InsertLink extends AppCompatActivity {
        if(  rModel.insertLink(l))
         Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
         else Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+
     }
 
 

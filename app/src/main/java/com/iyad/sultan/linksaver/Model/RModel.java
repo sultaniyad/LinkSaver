@@ -16,29 +16,31 @@ import io.realm.Sort;
 public class RModel {
 
     private Realm realm;
+    private RealmResults<Link> results;
 
     public RModel() {
         realm = Realm.getDefaultInstance();
     }
 
-    //Get
+    //Get Category
     public RealmResults<Link> getLinksByCategory(int category) {
 
-        return realm.where(Link.class).equalTo("Category", category).findAll();
+        return results =realm.where(Link.class).equalTo("Category", category).findAll();
     }
-
+//important link
     public RealmResults<Link> getLinksByImportant() {
 
-        return realm.where(Link.class).equalTo("isImportant", true).findAll();
+        return results=realm.where(Link.class).equalTo("isImportant", true).findAll();
     }
+    //search
     public RealmResults<Link> getLinksByKey(String key) {
 
-        return realm.where(Link.class).equalTo("Title", key, Case.INSENSITIVE).findAll();
+        return results=realm.where(Link.class).equalTo("Title", key, Case.INSENSITIVE).findAll();
     }
 
-
+//get all links
     public RealmResults<Link> getLinksAll() {
-        return realm.where(Link.class).findAllSorted("date", Sort.DESCENDING);
+        return results= realm.where(Link.class).findAllSorted("date", Sort.DESCENDING);
 
     }
 
@@ -60,7 +62,7 @@ public class RModel {
     }
 
     //Delete (may not work due to many realm result)
-    public boolean deleteLink(final RealmResults<Link> results, final int position) {
+    public void deleteLink(final int position) {
 
         realm.executeTransaction(new Realm.Transaction() {
             @Override
@@ -69,12 +71,24 @@ public class RModel {
 
             }
         });
-        return true;
+
     }
 
     public void removeRealm(){
         if(realm !=null)
             realm.close();
+    }
+
+
+    public void chnageStatus(final int position){
+
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                final  Link l = results.get(position);
+                l.setImportant(!l.isImportant());
+            }
+        });
     }
 
 
