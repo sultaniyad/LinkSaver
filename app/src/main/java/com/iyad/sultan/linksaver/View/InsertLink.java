@@ -49,7 +49,7 @@ public class InsertLink extends AppCompatActivity {
     @OnClick(R.id.btn_add)
     public void submit(View view) {
 
-        addNeeLink(txt_title.getText().toString(),txt_link.getText().toString(),1);
+        addNeeLink(txt_title.getText().toString(),txt_link.getText().toString(),2);
 
     }
 

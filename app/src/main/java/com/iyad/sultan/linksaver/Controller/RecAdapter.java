@@ -77,6 +77,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         private ImageView img_imporant;
         private TextView txt_openlink;
         private ImageView img_delete;
+        private ImageView img_vert_more;
 
         private TextView txt_title;
         private TextView txt_date;
@@ -89,7 +90,15 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             txt_date = (TextView) itemView.findViewById(R.id.txt_date);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
             img_imporant = (ImageView) itemView.findViewById(R.id.img_important);
+            img_vert_more = (ImageView) itemView.findViewById(R.id.vert_more);
 
+            //More vert clicked
+            img_vert_more.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mCallback.onOpenLinkClicked(getAdapterPosition());
+                }
+            });
 
             //Delete
             img_delete.setOnClickListener(new View.OnClickListener() {

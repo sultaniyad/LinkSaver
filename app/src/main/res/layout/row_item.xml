@@ -60,7 +60,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/imageView"
+                android:id="@+id/vert_more"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/ic_more_vert_black_24px"
                 android:layout_alignParentRight="true"
