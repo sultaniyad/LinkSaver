@@ -75,7 +75,6 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     //ViewHolder
     public class myViewHolder extends RecyclerView.ViewHolder{
         private ImageView img_imporant;
-        private TextView txt_openlink;
         private ImageView img_delete;
         private ImageView img_vert_more;
 
@@ -86,7 +85,6 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             super(itemView);
 
             txt_title = (TextView) itemView.findViewById(R.id.txt_title);
-            txt_openlink = (TextView) itemView.findViewById(R.id.txt_open_link);
             txt_date = (TextView) itemView.findViewById(R.id.txt_date);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
             img_imporant = (ImageView) itemView.findViewById(R.id.img_important);
@@ -107,13 +105,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
                     mCallback.onDeleteLinkClicked(getAdapterPosition());
                 }
             });
-            //open Link
-            txt_openlink.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.onOpenLinkClicked(getAdapterPosition());
-                }
-            });
+
             //change important status
             img_imporant.setOnClickListener(new View.OnClickListener() {
                 @Override

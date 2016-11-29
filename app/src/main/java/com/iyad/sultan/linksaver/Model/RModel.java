@@ -33,7 +33,7 @@ public class RModel {
         return results=realm.where(Link.class).equalTo("isImportant", true).findAll();
     }
     //search
-    public RealmResults<Link> getLinksByKey(String key) {
+    public RealmResults<Link> getLinksBySearch(String key) {
 
         return results=realm.where(Link.class).equalTo("Title", key, Case.INSENSITIVE).findAll();
     }

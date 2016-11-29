@@ -31,6 +31,7 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
         // Required empty public constructor
     }
     private static boolean isFragmentVisible;
+    private static final int social = 1;
     private RModel rModel;
     private RecAdapter recAdapter;
     private RealmResults<Link> results;
@@ -43,11 +44,12 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
         ButterKnife.bind(this,v);
         // Inflate the layout for this fragment
         rModel = new RModel();
-        results = rModel.getLinksByCategory(2);
+        results = rModel.getLinksByCategory(social);
         recAdapter = new RecAdapter(results,this);
 
         rec.setLayoutManager(new LinearLayoutManager(getActivity()));
         rec.setAdapter(recAdapter);
+        results.addChangeListener(callback);
         return  v;
     }
 
@@ -58,6 +60,8 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
             //if fragment visible do not call notifyDataSetChanged
             if(!isFragmentVisible) {
                 recAdapter.notifyDataSetChanged();
+                Toast.makeText(getActivity(), "Social called", Toast.LENGTH_SHORT).show();
+
             }
 
         }

@@ -108,7 +108,6 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
                 adp.notifyDataSetChanged();
                 Toast.makeText(getActivity(), "all link in change", Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(getActivity(), "all link in change", Toast.LENGTH_SHORT).show();
 
 
 
