@@ -90,6 +90,21 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
     }
 
     @Override
+    public void popMenuOpenlink(int position) {
+
+    }
+
+    @Override
+    public void popMenuSharelink(int position) {
+
+    }
+
+    @Override
+    public void popMenuDeletelink(int position) {
+
+    }
+
+    @Override
     public void onResume() {
         super.onResume();
         recAdapter.notifyDataSetChanged();

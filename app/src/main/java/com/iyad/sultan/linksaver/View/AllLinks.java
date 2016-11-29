@@ -98,6 +98,23 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
         Toast.makeText(getActivity(), "open link" + position, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void popMenuOpenlink(int position) {
+        Toast.makeText(getContext(), "POP open" + position, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void popMenuSharelink(int position) {
+        Toast.makeText(getContext(), "POP share" + position, Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public void popMenuDeletelink(int position) {
+        Toast.makeText(getContext(), "POP Delete" + position, Toast.LENGTH_SHORT).show();
+
+    }
+
 
     //callback for realm listener
     private RealmChangeListener callback = new RealmChangeListener() {

@@ -1,8 +1,11 @@
 package com.iyad.sultan.linksaver.Controller;
 
 import android.app.Activity;
+import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -21,30 +24,41 @@ import io.realm.RealmResults;
  */
 
 public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
-    private  RealmResults<Link> results;
+    private RealmResults<Link> results;
     CommunicationInterface mCallback;
+
     //Constructor
-    public RecAdapter(RealmResults<Link> r,CommunicationInterface com){
+    public RecAdapter(RealmResults<Link> r, CommunicationInterface com) {
         results = r;
 
-       try {
-           mCallback  = com;
-       }
-       catch (ClassCastException e) {
-           throw new ClassCastException(e.toString()
-                   + " must implement CommunicationInterface!!!");
-       }
+        try {
+            mCallback = com;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(e.toString()
+                    + " must implement CommunicationInterface!!!");
+        }
     }
-    public void setNewResult(RealmResults<Link> r){
-        results =r;
+
+    public void setNewResult(RealmResults<Link> r) {
+        results = r;
     }
 
     //Interface
     public interface CommunicationInterface {
         void onImportantStatusChange(int position);
+
         void onDeleteLinkClicked(int position);
+
         void onOpenLinkClicked(int position);
+
+        //PopMenu Interface
+        void popMenuOpenlink(int position);
+
+        void popMenuSharelink(int position);
+
+        void popMenuDeletelink(int position);
     }
+
     @Override
     public myViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
@@ -57,12 +71,18 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(myViewHolder holder, int position) {
+    public void onBindViewHolder(final myViewHolder holder, final int position) {
         final Link link = results.get(position);
         holder.txt_title.setText(link.getTitle());
         holder.txt_date.setText(link.getDate());
-        holder.img_imporant.setImageResource(link.isImportant()?R.drawable.lightbulb_on:R.drawable.lightbulb_off);
-       // holder.img_openlink.setImageResource(R.mipmap.ic_launcher);
+        holder.img_imporant.setImageResource(link.isImportant() ? R.drawable.lightbulb_on : R.drawable.lightbulb_off);
+        // holder.img_openlink.setImageResource(R.mipmap.ic_launcher);
+        holder.img_vert_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showPopmenu(holder.img_vert_more, position);
+            }
+        });
 
     }
 
@@ -71,9 +91,33 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         return results.size();
     }
 
+    private void showPopmenu(View v, final int position) {
+        PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.pop_pop_menu, popupMenu.getMenu());
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+
+                switch (item.getItemId()) {
+                    case R.id.open_link:
+                        mCallback.popMenuOpenlink(position);
+                        break;
+                    case R.id.share_link:
+                        mCallback.popMenuSharelink(position);
+                        break;
+                    case R.id.delete_link:
+                        mCallback.popMenuDeletelink(position);
+                        break;
+                }
+                return false;
+            }
+        });
+        popupMenu.show();
+    }
 
     //ViewHolder
-    public class myViewHolder extends RecyclerView.ViewHolder{
+    public class myViewHolder extends RecyclerView.ViewHolder {
         private ImageView img_imporant;
         private ImageView img_delete;
         private ImageView img_vert_more;
@@ -90,14 +134,15 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             img_imporant = (ImageView) itemView.findViewById(R.id.img_important);
             img_vert_more = (ImageView) itemView.findViewById(R.id.vert_more);
 
-            //More vert clicked
+         /*   //More vert clicked
             img_vert_more.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     mCallback.onOpenLinkClicked(getAdapterPosition());
+
                 }
             });
-
+*/
             //Delete
             img_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -111,10 +156,10 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
                 @Override
                 public void onClick(View view) {
                     //**change first in realm then change interface
-        int position = getAdapterPosition();
+                    int position = getAdapterPosition();
                     mCallback.onImportantStatusChange(position);
                     Link l = results.get(position);
-                    img_imporant.setImageResource(l.isImportant()?R.drawable.lightbulb_on:R.drawable.lightbulb_off);
+                    img_imporant.setImageResource(l.isImportant() ? R.drawable.lightbulb_on : R.drawable.lightbulb_off);
                     //change in realm
                     /*
                     * l.set*/

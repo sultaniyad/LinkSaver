@@ -91,6 +91,21 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
 
     }
 
+    @Override
+    public void popMenuOpenlink(int position) {
+
+    }
+
+    @Override
+    public void popMenuSharelink(int position) {
+
+    }
+
+    @Override
+    public void popMenuDeletelink(int position) {
+
+    }
+
     //callback for realm listener
     private RealmChangeListener callback = new RealmChangeListener() {
         @Override

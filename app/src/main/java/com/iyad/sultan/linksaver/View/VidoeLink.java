@@ -71,6 +71,21 @@ public class VidoeLink extends Fragment implements RecAdapter.CommunicationInter
 
     }
 
+    @Override
+    public void popMenuOpenlink(int position) {
+
+    }
+
+    @Override
+    public void popMenuSharelink(int position) {
+
+    }
+
+    @Override
+    public void popMenuDeletelink(int position) {
+
+    }
+
 
     //check visibility
     @Override

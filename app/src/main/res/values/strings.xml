@@ -15,6 +15,8 @@
     <string name="link_title">Link title</string>
     <string name="enter_link">Enter link</string>
     <string name="open">Open</string>
+    <string name="share_link">share</string>
+    <string name="delete_link">delete</string>
 
     <array name="category_array">
         <item>All</item>
