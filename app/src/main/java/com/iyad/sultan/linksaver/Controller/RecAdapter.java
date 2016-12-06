@@ -76,7 +76,16 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         holder.txt_title.setText(link.getTitle());
         holder.txt_date.setText(link.getDate());
         holder.img_imporant.setImageResource(link.isImportant() ? R.drawable.lightbulb_on : R.drawable.lightbulb_off);
-        // holder.img_openlink.setImageResource(R.mipmap.ic_launcher);
+        //change avatar
+switch (link.getCategory()){
+    case 1:        holder.img_avatar.setImageResource(R.drawable.ic_social_icon);
+break;
+    case 2:        holder.img_avatar.setImageResource(R.drawable.ic_video_icon);
+break;
+    default:        holder.img_avatar.setImageResource(R.drawable.ic_link_icon);
+
+}
+
         holder.img_vert_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -121,6 +130,7 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         private ImageView img_imporant;
         private ImageView img_delete;
         private ImageView img_vert_more;
+        private ImageView img_avatar;
 
         private TextView txt_title;
         private TextView txt_date;
@@ -133,6 +143,8 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
             img_imporant = (ImageView) itemView.findViewById(R.id.img_important);
             img_vert_more = (ImageView) itemView.findViewById(R.id.vert_more);
+            img_avatar = (ImageView) itemView.findViewById(R.id.imageView3);
+
 
          /*   //More vert clicked
             img_vert_more.setOnClickListener(new View.OnClickListener() {

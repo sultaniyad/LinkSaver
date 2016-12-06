@@ -55,8 +55,8 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adpater = new ViewPagerAdapter(getSupportFragmentManager());
         adpater.addFragment(new AllLinks(), getResources().getString(R.string.all_Links));
         adpater.addFragment(new ImportantLinks(),getResources().getString(R.string.important_link));
-        adpater.addFragment(new SocialLink(), getResources().getString(R.string.social_link));
-        adpater.addFragment(new VidoeLink(),getResources().getString(R.string.vidoe_link));
+        //adpater.addFragment(new SocialLink(), getResources().getString(R.string.social_link));
+      //  adpater.addFragment(new VidoeLink(),getResources().getString(R.string.vidoe_link));
 
         viewPager.setAdapter(adpater);
     }

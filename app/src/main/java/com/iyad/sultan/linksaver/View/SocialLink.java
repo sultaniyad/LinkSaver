@@ -3,6 +3,7 @@ package com.iyad.sultan.linksaver.View;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -12,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.iyad.sultan.linksaver.Controller.RecAdapter;
+import com.iyad.sultan.linksaver.Controller.RecCustomAdapter;
 import com.iyad.sultan.linksaver.Model.Link;
 import com.iyad.sultan.linksaver.Model.RModel;
 import com.iyad.sultan.linksaver.R;
@@ -24,7 +26,7 @@ import io.realm.RealmResults;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class SocialLink extends Fragment implements RecAdapter.CommunicationInterface {
+public class SocialLink extends Fragment   {
 
 @BindView(R.id.rec_social)RecyclerView rec;
     public SocialLink() {
@@ -33,7 +35,7 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
     private static boolean isFragmentVisible;
     private static final int social = 1;
     private RModel rModel;
-    private RecAdapter recAdapter;
+    private RecCustomAdapter recAdapter;
     private RealmResults<Link> results;
 
     @Override
@@ -45,7 +47,8 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
         // Inflate the layout for this fragment
         rModel = new RModel();
         results = rModel.getLinksByCategory(social);
-        recAdapter = new RecAdapter(results,this);
+//        recAdapter = new RecAdapter(results,this);
+        recAdapter = new RecCustomAdapter(results);
 
         rec.setLayoutManager(new LinearLayoutManager(getActivity()));
         rec.setAdapter(recAdapter);
@@ -74,35 +77,7 @@ public class SocialLink extends Fragment implements RecAdapter.CommunicationInte
 
     }
 
-    @Override
-    public void onImportantStatusChange(int position) {
 
-    }
-
-    @Override
-    public void onDeleteLinkClicked(int position) {
-
-    }
-
-    @Override
-    public void onOpenLinkClicked(int position) {
-
-    }
-
-    @Override
-    public void popMenuOpenlink(int position) {
-
-    }
-
-    @Override
-    public void popMenuSharelink(int position) {
-
-    }
-
-    @Override
-    public void popMenuDeletelink(int position) {
-
-    }
 
     @Override
     public void onResume() {

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.iyad.sultan.linksaver.Controller.LinkController;
 import com.iyad.sultan.linksaver.Controller.RecAdapter;
 import com.iyad.sultan.linksaver.Model.Link;
 import com.iyad.sultan.linksaver.Model.RModel;
@@ -26,7 +27,7 @@ import io.realm.RealmResults;
  * A simple {@link Fragment} subclass.
  */
 public class AllLinks extends Fragment implements RecAdapter.CommunicationInterface {
-
+    private LinkController con;
     private static boolean isFragmentVisible;
     private RModel rm;
     private RealmResults<Link> results;
@@ -59,6 +60,8 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
 
         results.addChangeListener(callback);
 
+        // create controller
+        con = new LinkController(getContext());
         return v;
     }
 
@@ -100,20 +103,20 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
 
     @Override
     public void popMenuOpenlink(int position) {
-        Toast.makeText(getContext(), "POP open" + position, Toast.LENGTH_SHORT).show();
+        final  Link link = results.get(position);
+        con.openLink(link.getLink());
     }
 
     @Override
     public void popMenuSharelink(int position) {
-        Toast.makeText(getContext(), "POP share" + position, Toast.LENGTH_SHORT).show();
-
+        final  Link link = results.get(position);
+      con.shareLink(link.getTitle(),link.getLink());
     }
 
     @Override
     public void popMenuDeletelink(int position) {
-        Toast.makeText(getContext(), "POP Delete" + position, Toast.LENGTH_SHORT).show();
-
-    }
+        adp.notifyItemRemoved(position);
+        rm.deleteLink(position);    }
 
 
     //callback for realm listener
