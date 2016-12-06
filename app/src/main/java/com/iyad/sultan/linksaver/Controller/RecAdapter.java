@@ -50,13 +50,9 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         void onDeleteLinkClicked(int position);
 
         void onOpenLinkClicked(int position);
+        void onShareLinkClicked(int position);
 
-        //PopMenu Interface
-        void popMenuOpenlink(int position);
 
-        void popMenuSharelink(int position);
-
-        void popMenuDeletelink(int position);
     }
 
     @Override
@@ -86,12 +82,7 @@ break;
 
 }
 
-        holder.img_vert_more.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showPopmenu(holder.img_vert_more, position);
-            }
-        });
+
 
     }
 
@@ -100,37 +91,15 @@ break;
         return results.size();
     }
 
-    private void showPopmenu(View v, final int position) {
-        PopupMenu popupMenu = new PopupMenu(v.getContext(), v);
-        MenuInflater menuInflater = popupMenu.getMenuInflater();
-        menuInflater.inflate(R.menu.pop_pop_menu, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-
-                switch (item.getItemId()) {
-                    case R.id.open_link:
-                        mCallback.popMenuOpenlink(position);
-                        break;
-                    case R.id.share_link:
-                        mCallback.popMenuSharelink(position);
-                        break;
-                    case R.id.delete_link:
-                        mCallback.popMenuDeletelink(position);
-                        break;
-                }
-                return false;
-            }
-        });
-        popupMenu.show();
-    }
 
     //ViewHolder
-    public class myViewHolder extends RecyclerView.ViewHolder {
+    public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         private ImageView img_imporant;
         private ImageView img_delete;
-        private ImageView img_vert_more;
+        private ImageView img_open_link;
         private ImageView img_avatar;
+        private ImageView img_share_link;
+
 
         private TextView txt_title;
         private TextView txt_date;
@@ -142,44 +111,39 @@ break;
             txt_date = (TextView) itemView.findViewById(R.id.txt_date);
             img_delete = (ImageView) itemView.findViewById(R.id.img_delete);
             img_imporant = (ImageView) itemView.findViewById(R.id.img_important);
-            img_vert_more = (ImageView) itemView.findViewById(R.id.vert_more);
+            img_open_link = (ImageView) itemView.findViewById(R.id.img_open_link);
+            img_share_link = (ImageView) itemView.findViewById(R.id.img_share_link);
             img_avatar = (ImageView) itemView.findViewById(R.id.imageView3);
 
 
-         /*   //More vert clicked
-            img_vert_more.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.onOpenLinkClicked(getAdapterPosition());
+            //Set Listener
+           img_open_link.setOnClickListener(this);
+            img_share_link.setOnClickListener(this);
+            img_imporant.setOnClickListener(this);
+            img_delete.setOnClickListener(this);
 
-                }
-            });
-*/
-            //Delete
-            img_delete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    mCallback.onDeleteLinkClicked(getAdapterPosition());
-                }
-            });
 
-            //change important status
-            img_imporant.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    //**change first in realm then change interface
-                    int position = getAdapterPosition();
-                    mCallback.onImportantStatusChange(position);
-                    Link l = results.get(position);
-                    img_imporant.setImageResource(l.isImportant() ? R.drawable.lightbulb_on : R.drawable.lightbulb_off);
-                    //change in realm
-                    /*
-                    * l.set*/
-                }
-            });
+
         }
 
 
+        @Override
+        public void onClick(View view) {
+
+            switch (view.getId()){
+
+                case R.id.img_open_link:mCallback.onOpenLinkClicked(getAdapterPosition());break;
+
+                case R.id.img_share_link:mCallback.onShareLinkClicked(getAdapterPosition());break;
+                case R.id.img_important:mCallback.onImportantStatusChange(getAdapterPosition());break;
+                case R.id.img_delete:mCallback.onDeleteLinkClicked(getAdapterPosition());break;
+
+
+
+
+
+            }
+        }
     }
 
 

@@ -5,7 +5,6 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +13,10 @@ import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Toast;
 
-import com.iyad.sultan.linksaver.Controller.RecAdapter;
-import com.iyad.sultan.linksaver.Model.RModel;
 import com.iyad.sultan.linksaver.View.AllLinks;
 import com.iyad.sultan.linksaver.View.ImportantLinks;
 import com.iyad.sultan.linksaver.View.InsertLink;
-import com.iyad.sultan.linksaver.View.SocialLink;
-import com.iyad.sultan.linksaver.View.VidoeLink;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,8 +49,7 @@ public class MainActivity extends AppCompatActivity {
         ViewPagerAdapter adpater = new ViewPagerAdapter(getSupportFragmentManager());
         adpater.addFragment(new AllLinks(), getResources().getString(R.string.all_Links));
         adpater.addFragment(new ImportantLinks(),getResources().getString(R.string.important_link));
-        //adpater.addFragment(new SocialLink(), getResources().getString(R.string.social_link));
-      //  adpater.addFragment(new VidoeLink(),getResources().getString(R.string.vidoe_link));
+
 
         viewPager.setAdapter(adpater);
     }

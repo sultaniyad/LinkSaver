@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.iyad.sultan.linksaver.Controller.LinkController;
 import com.iyad.sultan.linksaver.Controller.RecAdapter;
 import com.iyad.sultan.linksaver.Model.Link;
 import com.iyad.sultan.linksaver.Model.RModel;
@@ -30,6 +31,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
     private RModel rm;
     private RealmResults<Link> results;
     private RecAdapter adp;
+    private LinkController con;
 
     public ImportantLinks() {
         // Required empty public constructor
@@ -46,6 +48,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
         View v = inflater.inflate(R.layout.fragment_important_links, container, false);
         ButterKnife.bind(this, v);
 
+        con = new LinkController(getContext());
 
         //Realm
         rm = new RModel();
@@ -88,23 +91,16 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
 
     @Override
     public void onOpenLinkClicked(int position) {
+        con.openLink(results.get(position).getLink());
 
     }
 
     @Override
-    public void popMenuOpenlink(int position) {
-
+    public void onShareLinkClicked(int position) {
+        final Link l = results.get(position);
+        con.shareLink(l.getTitle(), l.getLink());
     }
 
-    @Override
-    public void popMenuSharelink(int position) {
-
-    }
-
-    @Override
-    public void popMenuDeletelink(int position) {
-
-    }
 
     //callback for realm listener
     private RealmChangeListener callback = new RealmChangeListener() {
