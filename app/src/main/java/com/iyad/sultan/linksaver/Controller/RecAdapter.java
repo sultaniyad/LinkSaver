@@ -71,12 +71,12 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
         final Link link = results.get(position);
         holder.txt_title.setText(link.getTitle());
         holder.txt_date.setText(link.getDate());
-        holder.img_imporant.setImageResource(link.isImportant() ? R.drawable.lightbulb_on : R.drawable.lightbulb_off);
+        holder.img_imporant.setImageResource(link.isImportant() ? R.drawable.ic_bookmark_yes : R.drawable.ic_bookmark_no);
         //change avatar
 switch (link.getCategory()){
     case 1:        holder.img_avatar.setImageResource(R.drawable.ic_social_icon);
 break;
-    case 2:        holder.img_avatar.setImageResource(R.drawable.ic_video_icon);
+    case 2:        holder.img_avatar.setImageResource(R.drawable.ic_video);
 break;
     default:        holder.img_avatar.setImageResource(R.drawable.ic_link_icon);
 

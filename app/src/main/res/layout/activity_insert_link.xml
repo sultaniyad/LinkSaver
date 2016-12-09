@@ -62,7 +62,7 @@
                 android:id="@+id/spinner"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="#d11f08"
+                android:backgroundTint="@color/colorAccent"
                 android:entries="@array/category_array"
                 android:padding="5dp" />
         </android.support.design.widget.TextInputLayout>

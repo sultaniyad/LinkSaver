@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal"
-    android:elevation="10dp"
+    android:orientation="vertical"
+    android:elevation="3dp"
     app:cardCornerRadius="5dp"
     app:cardUseCompatPadding="true"
     >
@@ -22,12 +22,13 @@
         <RelativeLayout
             android:orientation="horizontal"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp">
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/imageView3"
-                app:srcCompat="@drawable/ic_video_icon"
+                app:srcCompat="@drawable/ic_video"
                 android:maxWidth="40dp"
                 android:maxHeight="40dp"
                 android:minHeight="40dp"
@@ -42,30 +43,37 @@
                 android:orientation="vertical"
                 android:paddingLeft="10dp"
                 android:layout_weight="4.08"
-                android:layout_toLeftOf="@+id/vert_more"
-                android:layout_toStartOf="@+id/vert_more"
+
                 android:layout_toRightOf="@+id/imageView3"
                 android:layout_toEndOf="@+id/imageView3">
                 <TextView
                     android:id="@+id/txt_title"
+                    android:textColor="@color/textColorPrimary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="15dp"
+                    android:textSize="15sp"
                     android:textStyle="bold" />
                 <TextView
                     android:id="@+id/txt_date"
+                    android:textColor="@color/textColorSecondary"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textColor="#a0a3a7"
-                    android:textSize="13dp" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </RelativeLayout>
 
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="4dp"
+            android:background="@color/divider"/>
+
        <LinearLayout
            android:layout_width="fill_parent"
            android:layout_height="wrap_content"
-           android:gravity="end">
+           android:layout_marginTop="5dp"
+           android:gravity="right|center|end">
 
 
            <ImageButton
@@ -75,7 +83,7 @@
                android:paddingBottom="5dp"
                android:paddingLeft="15dp"
                android:background="#00000000"
-               app:srcCompat="@drawable/ic_favorite_border_24px"
+               app:srcCompat="@drawable/ic_link"
                android:paddingRight="15dp"
                />
            <ImageButton
@@ -85,7 +93,7 @@
                android:paddingBottom="5dp"
                android:paddingLeft="15dp"
                android:background="#00000000"
-               app:srcCompat="@drawable/ic_social_icon"
+               app:srcCompat="@drawable/ic_share"
                android:paddingRight="15dp"
                />
 
@@ -96,7 +104,7 @@
                android:paddingBottom="5dp"
                android:paddingLeft="15dp"
                android:background="#00000000"
-               app:srcCompat="@drawable/ic_delete_24px"
+               app:srcCompat="@drawable/ic_delete"
                android:paddingRight="15dp"
                />
 
@@ -107,7 +115,7 @@
                android:paddingBottom="5dp"
                android:paddingLeft="15dp"
                android:background="#00000000"
-               app:srcCompat="@drawable/ic_favorite_border_24px"
+               app:srcCompat="@drawable/ic_bookmark_no"
                android:paddingRight="15dp"
                />
        </LinearLayout>
