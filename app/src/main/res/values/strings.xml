@@ -16,7 +16,13 @@
     <string name="enter_link">Enter link</string>
     <string name="open">Open</string>
     <string name="share_link">share</string>
+    <string name="share_using">share using</string>
+
     <string name="delete_link">delete</string>
+    <string name="success">Successful added</string>
+    <string name="error">Error</string>
+    <string name="open_using">Open using</string>
+    <string name="URL_INVALID">URL INVALID</string>
 
     <array name="category_array">
         <item>All</item>

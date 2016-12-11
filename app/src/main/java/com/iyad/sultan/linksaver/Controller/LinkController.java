@@ -2,7 +2,12 @@ package com.iyad.sultan.linksaver.Controller;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.widget.Toast;
+
+import com.iyad.sultan.linksaver.R;
+
+import java.net.URI;
 
 /**
  * Created by salkhmis on 12/2/2016.
@@ -15,12 +20,11 @@ public class LinkController {
         context =c;
     }
     public   void openLink(String link){
-        Intent more = new Intent(Intent.ACTION_SEND);
-        more.setType("text/plain");
+        Intent more = new Intent(Intent.ACTION_VIEW);
 
-        more.putExtra(Intent.EXTRA_TEXT, link);
+        more.setData(Uri.parse(link));
         try {
-           context.startActivity(Intent.createChooser(more, "Open using"));
+           context.startActivity(Intent.createChooser(more, context.getResources().getText(R.string.open_using)));
         } catch (Exception e) {
             Toast.makeText(context, "Error happened! Plz send Developer", Toast.LENGTH_SHORT).show();
 
@@ -43,6 +47,8 @@ public class LinkController {
         shareTwitter.setType("text/plain");
         shareTwitter.setPackage("com.twitter.android");
         shareTwitter.putExtra(Intent.EXTRA_TEXT, title + "\n" + link);
+
+
         try {
             context.startActivity(shareTwitter);
         } catch (Exception e) {
@@ -57,7 +63,7 @@ public class LinkController {
 
         more.putExtra(Intent.EXTRA_TEXT, title + "\n" + link);
         try {
-            context.startActivity(Intent.createChooser(more, "Share using"));
+            context.startActivity(Intent.createChooser(more, context.getResources().getText(R.string.share_using)));
         } catch (Exception e) {
             Toast.makeText(context, "Error happened! Plz send Developer", Toast.LENGTH_SHORT).show();
 

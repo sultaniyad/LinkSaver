@@ -6,8 +6,13 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
@@ -38,6 +43,7 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
     }
 
 
+
     @BindView(R.id.rec)
     RecyclerView rec;
 
@@ -53,6 +59,8 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
         results = rm.getLinksAll();
         adp = new RecAdapter(results, this);
         rec.setAdapter(adp);
+//set Toolbar
+        setHasOptionsMenu(true);
 
         LinearLayoutManager gridL = new LinearLayoutManager(getActivity());
         rec.setLayoutManager(gridL);
@@ -115,7 +123,7 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
             //if fragment visible do not call notifyDataSetChanged
             if(!isFragmentVisible) {
                 adp.notifyDataSetChanged();
-                Toast.makeText(getActivity(), "all link in change", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "all link in change", Toast.LENGTH_SHORT).show();
             }
 
 
@@ -127,14 +135,7 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            isFragmentVisible = true;
-            Log.i("test", isFragmentVisible + " " + "" + isVisibleToUser);
-
-        } else {
-            isFragmentVisible = false;
-            Log.i("test", isFragmentVisible + " " + "" + isVisibleToUser);
-        }
+        isFragmentVisible = isVisibleToUser;
 
     }
 
@@ -144,4 +145,40 @@ public class AllLinks extends Fragment implements RecAdapter.CommunicationInterf
         super.onResume();
         adp.notifyDataSetChanged();
     }
+
+
+    //Menu
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        //Create Menu programing
+        MenuItem item = menu.add("Search !" +
+                "!!");
+        item.setIcon(R.drawable.ic_search_white_24dp);
+        item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM
+                | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        SearchView sv = new SearchView(getActivity());
+        item.setActionView(sv);
+
+        sv.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+
+                adp.setNewResult(rm.getLinksBySearch(newText));
+                return false;
+            }
+        });
+
+
+
+
+
+    }
+
+
+
 }

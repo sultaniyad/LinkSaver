@@ -40,7 +40,9 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     }
 
     public void setNewResult(RealmResults<Link> r) {
+
         results = r;
+        notifyDataSetChanged();
     }
 
     //Interface

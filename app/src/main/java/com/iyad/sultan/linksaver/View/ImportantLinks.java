@@ -109,7 +109,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
             //if fragment visible do not call notifyDataSetChanged
             if (!isFragmentVisible) {
                 adp.notifyDataSetChanged();
-                Toast.makeText(getActivity(), "important", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getActivity(), "important", Toast.LENGTH_SHORT).show();
             }
         }
     };
@@ -118,14 +118,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if (isVisibleToUser) {
-            isFragmentVisible = true;
-            Log.i("test", isFragmentVisible + " " + "" + isVisibleToUser);
-
-        } else {
-            isFragmentVisible = false;
-            Log.i("test", isFragmentVisible + " " + "" + isVisibleToUser);
-        }
+        isFragmentVisible = isVisibleToUser;
 
     }
 }

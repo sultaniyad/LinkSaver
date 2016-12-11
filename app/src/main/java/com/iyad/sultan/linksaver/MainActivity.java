@@ -57,10 +57,11 @@ public class MainActivity extends AppCompatActivity {
 
 
 //Menu
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
-
+/*
         MenuItem searchItem = menu.findItem(R.id.action_search);
         SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -76,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
 
                 return false;
             }
-        });
+        });*/
         return super.onCreateOptionsMenu(menu);
     }
 

@@ -35,7 +35,9 @@ public class RModel {
     //search
     public RealmResults<Link> getLinksBySearch(String key) {
 
-        return results=realm.where(Link.class).equalTo("Title", key, Case.INSENSITIVE).findAll();
+        if(key.isEmpty())
+            return getLinksAll();
+        return results=realm.where(Link.class).contains("Title", key, Case.INSENSITIVE).findAll();
     }
 
 //get all links

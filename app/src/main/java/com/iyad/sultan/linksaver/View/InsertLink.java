@@ -3,6 +3,7 @@ package com.iyad.sultan.linksaver.View;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Patterns;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -73,21 +74,30 @@ public class InsertLink extends AppCompatActivity {
 
     void addNeeLink(String title, String link, int category) {
 
+        //Validation
+        if(!link.contains("http"))
+             link = "http://" + link;
+
+        if(!Patterns.WEB_URL.matcher(link).matches()) {
+            Toast.makeText(this, R.string.URL_INVALID, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
 
         Link l = new Link();
         l.setTitle(title);
         l.setLink(link);
         l.setCategory(category);
-
-
         l.setDate(format1.format(c.getTime()));
         l.setImportant(false);
         if (rModel.insertLink(l))
-            Toast.makeText(this, "Done", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(this, "Error", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.success, Toast.LENGTH_SHORT).show();
+        else Toast.makeText(this,  R.string.error, Toast.LENGTH_SHORT).show();
+        finish();
 
     }
-
+//
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

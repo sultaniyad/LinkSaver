@@ -48,7 +48,7 @@
                 android:id="@+id/link_link"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="text"
+                android:inputType="textUri"
                 android:hint="@string/enter_link" />
         </android.support.design.widget.TextInputLayout>
 
