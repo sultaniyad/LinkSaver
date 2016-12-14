@@ -1,7 +1,5 @@
 package com.iyad.sultan.linksaver.Model;
 
-import java.util.Date;
-
 import io.realm.RealmObject;
 
 /**

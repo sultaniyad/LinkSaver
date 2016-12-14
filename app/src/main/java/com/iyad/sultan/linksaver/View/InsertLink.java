@@ -17,22 +17,27 @@ import com.iyad.sultan.linksaver.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class InsertLink extends AppCompatActivity {
-    SimpleDateFormat format1;
-    RModel rModel;
-    Calendar c;
+    private SimpleDateFormat format1;
+    private RModel rModel;
+    private Calendar c;
     @BindView(R.id.toolbar2)
+
     Toolbar toolbar;
     @BindView(R.id.link_title)
+
     TextView txt_title;
     @BindView(R.id.link_link)
+
     TextView txt_link;
     @BindView(R.id.spinner)
+
     Spinner spinner;
 
     private int category;
@@ -46,7 +51,7 @@ public class InsertLink extends AppCompatActivity {
         rModel = new RModel();
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        format1 = new SimpleDateFormat("yyyy-MM-dd");
+        format1 = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
 
         //Set Category Listener
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -72,7 +77,7 @@ public class InsertLink extends AppCompatActivity {
 
     }
 
-    void addNeeLink(String title, String link, int category) {
+    private void addNeeLink(String title, String link, int category) {
 
         //Validation
         if(!link.contains("http"))

@@ -5,11 +5,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.iyad.sultan.linksaver.Controller.LinkController;
 import com.iyad.sultan.linksaver.Controller.RecAdapter;
@@ -38,6 +36,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
     }
 
     @BindView(R.id.rec_important)
+
     RecyclerView recyclerView;
 
     @Override
@@ -103,7 +102,7 @@ public class ImportantLinks extends Fragment implements RecAdapter.Communication
 
 
     //callback for realm listener
-    private RealmChangeListener callback = new RealmChangeListener() {
+    private final RealmChangeListener callback = new RealmChangeListener() {
         @Override
         public void onChange(Object element) {
             //if fragment visible do not call notifyDataSetChanged

@@ -1,9 +1,5 @@
 package com.iyad.sultan.linksaver.Model;
 
-import java.util.Calendar;
-import java.util.Date;
-import java.util.List;
-
 import io.realm.Case;
 import io.realm.Realm;
 import io.realm.RealmResults;
@@ -15,19 +11,14 @@ import io.realm.Sort;
 
 public class RModel {
 
-    private Realm realm;
+    private final Realm realm;
     private RealmResults<Link> results;
 
     public RModel() {
         realm = Realm.getDefaultInstance();
     }
 
-    //Get Category
-    public RealmResults<Link> getLinksByCategory(int category) {
-
-        return results =realm.where(Link.class).equalTo("Category", category).findAll();
-    }
-//important link
+    //important link
     public RealmResults<Link> getLinksByImportant() {
 
         return results=realm.where(Link.class).equalTo("isImportant", true).findAll();

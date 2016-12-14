@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">حفظ الروابط</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+
+    <string name="all_Links">روابط</string>
+    <string name="important_link">مهمة</string>
+    <string name="add_new_link">إضافة</string>
+    <string name="link_title">الوصف</string>
+    <string name="enter_link">رابط</string>
+    <string name="share_using">مشاركة مع</string>
+
+    <string name="success">تم الأضافة</string>
+    <string name="error">خطأ</string>
+    <string name="open_using">فتح مع</string>
+    <string name="URL_INVALID">رابط المدخل غير صحيح</string>
+
+    <array name="category_array">
+        <item>غير مصنف</item>
+        <item>شبكة اجتماعية</item>
+        <item>فديو</item>
+    </array>
+
+</resources>

@@ -1,11 +1,7 @@
 package com.iyad.sultan.linksaver.Controller;
 
-import android.app.Activity;
-import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -14,9 +10,6 @@ import android.widget.TextView;
 import com.iyad.sultan.linksaver.Model.Link;
 import com.iyad.sultan.linksaver.R;
 
-import java.util.List;
-
-import butterknife.BindView;
 import io.realm.RealmResults;
 
 /**
@@ -25,7 +18,7 @@ import io.realm.RealmResults;
 
 public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
     private RealmResults<Link> results;
-    CommunicationInterface mCallback;
+    private CommunicationInterface mCallback;
 
     //Constructor
     public RecAdapter(RealmResults<Link> r, CommunicationInterface com) {
@@ -64,8 +57,8 @@ public class RecAdapter extends RecyclerView.Adapter<RecAdapter.myViewHolder> {
                 .inflate(R.layout.row_item, parent, false);
         // set the view's size, margins, paddings and layout parameters
 
-        myViewHolder vh = new myViewHolder(v);
-        return vh;
+
+        return new myViewHolder(v);
     }
 
     @Override
@@ -96,15 +89,15 @@ break;
 
     //ViewHolder
     public class myViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private ImageView img_imporant;
-        private ImageView img_delete;
-        private ImageView img_open_link;
-        private ImageView img_avatar;
-        private ImageView img_share_link;
+        private final ImageView img_imporant;
+        private final ImageView img_delete;
+        private final ImageView img_open_link;
+        private final ImageView img_avatar;
+        private final ImageView img_share_link;
 
 
-        private TextView txt_title;
-        private TextView txt_date;
+        private final TextView txt_title;
+        private final TextView txt_date;
 
         public myViewHolder(View itemView) {
             super(itemView);
